@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { environment } = require('./config');
 const isProduction = environment === 'production';
+const { ValidationError } = require('sequelize')
 
 const app = express();
 app.use(morgan('dev'));
@@ -38,11 +39,12 @@ if (!isProduction) {
     })
   );
 
-  // backend/app.js
+// Connect all the routes
 const routes = require('./routes');
 
 app.use(routes); // Connect all the routes
 
+// Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
   err.title = "Resource Not Found";
@@ -50,8 +52,6 @@ app.use((_req, _res, next) => {
   err.status = 404;
   next(err);
 });
-
-const { ValidationError } = require('sequelize'); 
 
 // Process sequelize errors
 app.use((err, _req, _res, next) => {
@@ -67,8 +67,28 @@ app.use((err, _req, _res, next) => {
   next(err);
 });
 
-// backend/app.js
-// ...
+app.use((_req, _res, next) => {
+  const err = new Error("The requested resource couldn't be found.");
+  err.title = "Resource Not Found";
+  err.errors = { message: "The requested resource couldn't be found." };
+  err.status = 404;
+  next(err);
+});
+
+// Process sequelize errors
+app.use((err, _req, _res, next) => {
+  // check if error is a Sequelize error:
+  if (err instanceof ValidationError) {
+    let errors = {};
+    for (let error of err.errors) {
+      errors[error.path] = error.message;
+    }
+    err.title = 'Validation error';
+    err.errors = errors;
+  }
+  next(err);
+});
+
 // Error formatter
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
