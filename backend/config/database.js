@@ -1,5 +1,5 @@
 // backend/config/database.js
-const config = require('./index');
+const config = require('./index.js');
 
 module.exports = {
   development: {
