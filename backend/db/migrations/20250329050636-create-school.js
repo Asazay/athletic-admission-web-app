@@ -1,40 +1,42 @@
 'use strict';
-
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
+// This is a migration file for creating the Schools table in the database.
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Schools', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
-      },
-      role:{
-        type: Sequelize.ENUM('user', 'admin', 'principal'),
+      state: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'user'
+        validate: {
+          isAlpha: true,
+          len: [2, 2]
+        }
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      zipCode: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isNumeric: true,
+          len: [5, 5]
+        }
       },
       createdAt: {
         allowNull: false,
@@ -44,12 +46,12 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')  
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Schools";
     return queryInterface.dropTable(options);
   }
 };

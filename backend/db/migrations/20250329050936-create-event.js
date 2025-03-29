@@ -1,40 +1,49 @@
 'use strict';
-
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA;  // define your schema in options object
 }
 
+// This is a migration file for creating the Events table in the database.
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Users', {
+    await queryInterface.createTable('Events', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      email: {
+      name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
+       
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
-        allowNull: false
-      },
-      role:{
-        type: Sequelize.ENUM('user', 'admin', 'principal'),
+      description: {
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'user'
+      },
+      date: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        validate: {
+          isDate: true,
+          isAfter: new Date().toISOString()
+        }
+      },
+      time: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        validate: {
+          isTime: true
+        }
+      },
+      status: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          isIn: [['upcoming','cancelled', 'completed']]
+        }
       },
       createdAt: {
         allowNull: false,
@@ -44,12 +53,12 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')  
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Events";
     return queryInterface.dropTable(options);
   }
 };
