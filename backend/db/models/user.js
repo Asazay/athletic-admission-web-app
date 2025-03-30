@@ -16,12 +16,24 @@ module.exports = (sequelize, DataTypes) => {
   User.init({
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      validate: {
+        isEmail: true,
+        notEmpty: true,
+      },
+    },
     hashedPassword: DataTypes.STRING,
     role: DataTypes.ENUM('user', 'admin', 'principal'),
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: {
+        exclude: ['hashedPassword', 'createdAt', 'updatedAt'],
+      },
+    },
   });
   return User;
 };
