@@ -28,6 +28,9 @@ router.get(
       if (user) {
         const safeUser = {
           id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          role: user.role,
           email: user.email,
         };
         return res.json({
@@ -61,6 +64,9 @@ router.post(
   
       const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        role: user.role,
         email: user.email,
       };
   
@@ -77,7 +83,7 @@ router.delete(
     '/',
     (_req, res) => {
       res.clearCookie('token');
-      return res.json({ message: 'success' });
+      return res.json({ message: 'Successfully logged out' });
     }
   );
 
