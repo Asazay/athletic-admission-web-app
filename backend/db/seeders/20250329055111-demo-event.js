@@ -15,6 +15,8 @@ module.exports = {
         time: "10:00 AM",
         location: "Springfield High School Stadium",
         description: "Join us for a exciting game against the eagles.",
+        price: 15.00,
+        imageUrl: "https://example.com/springfield-football.jpg",
         status: "upcoming",
       },
       {
@@ -24,6 +26,8 @@ module.exports = {
         location: "Lincoln High School Stadium",
         description: "Cheer on the Lincoln Lions as they take on the Washington Eagles.",
         status: "upcoming",
+        imageUrl: "https://example.com/lincoln-football.jpg",
+        price: 10.00,
       },
       {
         name: "Washington High School BasketBall Game",
@@ -32,6 +36,8 @@ module.exports = {
         location: "Washington High School Gymnasium",
         description: "Watch the Washington Eagles compete against the Creston Lions.",
         status: "upcoming",
+        imageUrl: "https://example.com/washington-basketball.jpg",
+        price: 12.00,
       },
     ]);
   },

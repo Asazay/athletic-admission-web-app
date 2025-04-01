@@ -42,6 +42,13 @@ module.exports = {
         type: Sequelize.NUMERIC,
         allowNull: false,
       },
+      imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        validate: {
+          isUrl: true
+        }
+      },
       status: {
         type: Sequelize.STRING,
         allowNull: false,
