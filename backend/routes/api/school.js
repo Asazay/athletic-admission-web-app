@@ -68,6 +68,25 @@ router.get(
   }
 );
 
+// Get school by ID
+router.get(
+  '/:schoolId',
+  async (req, res) => {
+    const { schoolId } = req.params;
+    const school = await School.findByPk(schoolId);
+
+    if (!school) {
+      const err = new Error('School not found');
+      err.status = 404;
+      err.title = 'School not found';
+      err.errors = { school: 'No school found with the provided ID.' };
+      return next(err);
+    }
+
+    return res.json({ school });
+  }
+);
+
 
 // Create a new school
 router.post(
