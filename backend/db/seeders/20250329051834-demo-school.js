@@ -16,18 +16,21 @@ module.exports = {
         state: "IL",
         city: "Springfield",
         zipCode: "62704",
+        address: "123 Main St",
       },
       {
         name: "Lincoln High School",
         state: "CA",
         city: "Los Angeles",
         zipCode: "90001",
+        address: "456 Elm St",
       },
       {
         name: "Washington High School",
         state: "NY",
         city: "New York",
         zipCode: "10001",
+        address: "789 Oak St",
       },
     ]);
   },
