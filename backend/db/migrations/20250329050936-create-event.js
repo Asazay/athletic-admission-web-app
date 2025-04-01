@@ -38,6 +38,10 @@ module.exports = {
           isTime: true
         }
       },
+      Price: {
+        type: Sequelize.NUMERIC,
+        allowNull: false,
+      },
       status: {
         type: Sequelize.STRING,
         allowNull: false,

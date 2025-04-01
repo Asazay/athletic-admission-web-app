@@ -38,6 +38,10 @@ module.exports = {
           len: [5, 5]
         }
       },
+      address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
