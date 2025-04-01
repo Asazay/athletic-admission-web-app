@@ -38,7 +38,7 @@ module.exports = {
           isTime: true
         }
       },
-      Price: {
+      price: {
         type: Sequelize.NUMERIC,
         allowNull: false,
       },
