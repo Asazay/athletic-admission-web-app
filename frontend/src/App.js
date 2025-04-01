@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormpage";
-import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from "./components/LoginFormModal";
+import SignupFormPage from "./components/SignupFormModal";
 import Navigation from "./components/Navigation";
 import * as sessionActions from "./store/session";
 
@@ -15,15 +15,8 @@ function App() {
 
   return (
     <>
-    <Navigation isLoaded={isLoaded} />
-    {isLoaded && (<Switch>
-      <Route path="/login">
-        <LoginFormPage />
-      </Route>
-      <Route path="/signup">
-          <SignupFormPage />
-        </Route>
-    </Switch>)}
+      <Navigation isLoaded={isLoaded} />
+      {isLoaded && <Switch></Switch>}
     </>
   );
 }
