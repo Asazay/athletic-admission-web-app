@@ -13,34 +13,44 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
+      <div>
         <ProfileButton user={sessionUser} />
-      </li>
+      </div>
     );
   } else {
     sessionLinks = (
-      <li>
-        <OpenModalButton
-          buttonText="Log In"
-          modalComponent={<LoginFormModal />}
-        />
-        <OpenModalButton
-          buttonText="Sign Up"
-          modalComponent={<SignupFormModal />}
-        />
-      </li>
+      <>
+        <div id="omb-div">
+          <OpenModalButton
+            buttonText="Log In"
+            modalComponent={<LoginFormModal />}
+          />
+        </div> /
+        <div id="omb-div">
+          <OpenModalButton
+            buttonText="Sign Up"
+            modalComponent={<SignupFormModal />}
+          />
+        </div>
+      </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
+    <div id="nav-bar">
+      <div>
+        <div>Menu</div>
+        <div style={{ fontSize: 60 }}>Grandevent</div>
+        <div>
+          {/* <li>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+          </li> */}
+          {isLoaded && sessionLinks}
+        </div>
+      </div>
+    </div>
   );
 }
 
