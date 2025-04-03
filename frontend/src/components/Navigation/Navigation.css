@@ -1,0 +1,41 @@
+#nav-bar div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    background-color: #000000;
+    color: azure;
+    box-sizing: border-box;
+}
+
+#nav-bar div div{
+    display: flex;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-bar ul{
+    display: flex;
+    list-style: none;
+}
+
+#nav-bar > div div div{
+    margin: 2px;
+}
+
+#omb-div button{
+    background-color: transparent;
+    color: azure;
+    border: none;
+}
+
+#omb-div button:hover{
+    cursor: pointer;
+    color: aqua;
+}
+
+#nav-bar ul div{
+    display: flex;
+    margin: 0;
+}

@@ -1,0 +1,55 @@
+head{
+    border: solid green 2px;
+}
+
+body{
+    border: solid blue 2px;
+}
+
+div {
+    /* border: solid red 1px; */
+}
+
+#school-search-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+#search-title{
+    font-size: 48px;
+}
+
+#school-search-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid red 1px;
+    width: 80%;
+}
+
+#school-search-form div{
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+}
+
+#submit-btn{
+    align-self: center;
+    max-width: 150px;
+}
+
+#homepage-img-div{
+    display: flex;
+    justify-content: center;
+}
+
+#homepage-img-div div img{
+    width: 100%;
+    height: 100%;
+}

@@ -1,1 +1,11 @@
 /* TODO Add site wide styles */
+html{
+    box-sizing: border-box;
+    margin: 0 5%;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFFFF;
+    color: black;
+}
