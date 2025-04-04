@@ -1,13 +1,9 @@
-head{
-    border: solid green 2px;
-}
+/* div {
+    border: solid red 1px;
+} */
 
-body{
-    border: solid blue 2px;
-}
-
-div {
-    /* border: solid red 1px; */
+#img-div{
+    margin: 5% 0;
 }
 
 #school-search-div{
@@ -16,6 +12,8 @@ div {
     justify-content: center;
     align-items: center;
     margin: 20px 0;
+    color: white;
+    background-color: black;
 }
 
 #search-title{
@@ -27,7 +25,7 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid red 1px;
+    border: solid black 2px;
     width: 80%;
 }
 
@@ -44,8 +42,66 @@ div {
     max-width: 150px;
 }
 
+#school-list-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid black 4px;
+    justify-self: center;
+    width: 80%;
+    box-sizing: border-box;
+    background-color: lightgray;
+}
+
+#school-list-title{
+    font-size: 48px;
+    text-decoration: underline;
+}
+
+#school-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    width: 100%;
+    background-color: lightgray;
+    overflow: scroll;
+}
+
+.school-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: solid darkslategray 2px;
+    margin: 10px 2px;
+    padding: 2px;
+    background-color: black;
+    box-sizing: border-box;
+    color: white;
+    height: min-content
+}
+
+.school-item div{
+    margin: 0;
+}
+
+.school-item div p{
+    margin: 0;
+}
+
+.school-item button{
+    margin: 2px;
+}
+
+div h3{
+    margin: 0;
+}
+
 #homepage-img-div{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
