@@ -1,0 +1,31 @@
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+    color: whitesmoke;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+section h1{
+    max-width: 100%;
+    font-size: 48px;
+    margin: 10px 0;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding: 10px;
+}
+
+.product img{
+    border: solid lightcyan 1px;
+}
+
+.description{
+    
+}

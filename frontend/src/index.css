@@ -5,7 +5,8 @@ html{
 }
 
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'garmond', serif;
     background-color: #FFFFFF;
     color: black;
+    box-sizing: border-box;
 }

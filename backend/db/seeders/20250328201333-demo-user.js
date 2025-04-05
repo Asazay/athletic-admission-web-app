@@ -34,6 +34,20 @@ module.exports = {
           email: "principaluser@grandevent.com",
           hashedPassword: bcrypt.hashSync("password"),
           role: "principal",
+        },
+        {
+          firstName: "Princal2",
+          lastName: "User2",
+          email: "principaluser2@grandevent.com",
+          hashedPassword: bcrypt.hashSync("password"),
+          role: "principal",
+        },
+        {
+          firstName: "Princal3",
+          lastName: "User3",
+          email: "principaluser3@grandevent.com",
+          hashedPassword: bcrypt.hashSync("password"),
+          role: "principal",
         }
       ],
       { validate: true }

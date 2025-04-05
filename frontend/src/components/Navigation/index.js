@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import OpenModalButton from "../OpenModalButton";
@@ -9,6 +9,7 @@ import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const navigate = useNavigate();
 
   let sessionLinks;
   if (sessionUser) {
@@ -40,7 +41,7 @@ function Navigation({ isLoaded }) {
     <div id="nav-bar">
       <div>
         <div>Menu</div>
-        <div style={{ fontSize: 60 }}>Grandevent</div>
+        <div style={{ fontSize: 60 }}><href onClick={e => navigate('/')}>GRANDEVENT</href></div>
         <div>
           {/* <li>
             <NavLink exact to="/">

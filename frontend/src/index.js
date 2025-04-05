@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import {router} from "./router";
 
 import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import {RouterProvider} from "react-router";
 import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
@@ -24,10 +24,9 @@ function Root() {
   return (
     <ModalProvider>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
+        <RouterProvider router={router}>
           <Modal />
-        </BrowserRouter>
+        </RouterProvider>
       </Provider>
     </ModalProvider>
   );

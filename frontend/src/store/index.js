@@ -2,11 +2,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import {thunk} from 'redux-thunk';
 import sessionReducer from './session';
+import schoolsReducer from './schools';
+import eventsReducer from './events';
+import checkoutReducer from './checkout';
 
 // frontend/src/store/index.js
 // ...
 const rootReducer = combineReducers({
     session: sessionReducer,
+    schools: schoolsReducer,
+    events: eventsReducer,
+    checkout: checkoutReducer,
 });
 
 let enhancer;

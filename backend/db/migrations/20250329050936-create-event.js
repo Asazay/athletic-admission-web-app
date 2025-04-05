@@ -14,6 +14,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      schoolId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'Schools',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -22,6 +32,13 @@ module.exports = {
       description: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      location: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        validate: {
+          len: [1, 255]
+        }
       },
       date: {
         type: Sequelize.DATE,
@@ -39,7 +56,7 @@ module.exports = {
         }
       },
       price: {
-        type: Sequelize.NUMERIC,
+        type: Sequelize.DECIMAL,
         allowNull: false,
       },
       imageUrl: {

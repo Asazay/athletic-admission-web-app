@@ -1,0 +1,8 @@
+section{
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: white;
+    margin: 20px 0;
+    text-align: center;
+}
