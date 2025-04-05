@@ -20,6 +20,10 @@ if (!isProduction) {
     // enable cors only in development
     app.use(cors());
   }
+
+  // app.use(cors({
+  //   origin: ["http://localhost:3000", "https://checkout.stripe.com"]
+  // }))
   
   // helmet helps set a variety of headers to better secure your app
   app.use(
@@ -43,6 +47,7 @@ if (!isProduction) {
 const routes = require('./routes');
 
 app.use(routes); // Connect all the routes
+app.use(express.static('public'));
 
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {

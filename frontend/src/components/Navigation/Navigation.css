@@ -35,6 +35,15 @@
     color: aqua;
 }
 
+href{
+    text-decoration: none;
+}
+
+href:hover{
+    cursor: pointer;
+    color: lightgrey;
+}
+
 #nav-bar ul div{
     display: flex;
     margin: 0;

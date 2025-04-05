@@ -4,6 +4,7 @@ const sessionRouter = require('./session.js');
 const usersRouter = require('./users.js');
 const schoolsRouter = require('./school.js');
 const eventsRouter = require('./events.js');
+const serverRouter = require('./server.js');
 
 // GET /api/set-token-cookie
 const { setTokenCookie } = require('../../utils/auth.js');
@@ -20,5 +21,7 @@ router.use('/users', usersRouter);
 router.use('/schools', schoolsRouter);
 
 router.use('/events', eventsRouter);
+
+router.use('/server', serverRouter);
 
 module.exports = router;
