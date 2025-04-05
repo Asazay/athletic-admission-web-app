@@ -1,8 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const GET__ALL_SCHOOLS = "schools/GET_ALL_SCHOOLS";
-const GET_SCHOOL = "schools/GET_SCHOOL";
 const GET_SCHOOL_BY_SEARCH = "schools/GET_SCHOOL_BY_SEARCH";
+const GET_SCHOOL_BY_ID = "schools/GET_SCHOOL_BY_ID";
 const CREATE_SCHOOL = "schools/CREATE_SCHOOL";
 const EDIT_SCHOOL = "schools/EDIT_SCHOOL";
 const DELETE_SCHOOL = "schools/DELETE_SCHOOL";
@@ -13,16 +13,17 @@ const getAllSchools = (schools) => {
     payload: schools,
   };
 }
-const getSchool = (school) => {
-  return {
-    type: GET_SCHOOL,
-    payload: school,
-  };
-};
 
 const getSchoolBySearch = (school) => {
   return {
     type: GET_SCHOOL_BY_SEARCH,
+    payload: school,
+  };
+};
+
+const getSchoolById = (school) => {
+  return {
+    type: GET_SCHOOL_BY_ID,
     payload: school,
   };
 };
@@ -61,12 +62,6 @@ export const getAllSchoolsThunk = () => async (dispatch) => {
   }
 };
 
-export const getSchoolThunk = (schoolId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/schools/${schoolId}`);
-  const data = await response.json();
-  dispatch(getSchool(data));
-};
-
 export const getSchoolBySearchThunk = (searchParams) => async (dispatch) => {
   const response = await csrfFetch(
     `/api/schools/search?${new URLSearchParams(searchParams)}`
@@ -77,6 +72,18 @@ export const getSchoolBySearchThunk = (searchParams) => async (dispatch) => {
     return data;
   }
   else if (response.status < 500) {
+    const errMsgs = await response.json();
+    return errMsgs;
+  }
+};
+
+export const getSchoolByIdThunk = (schoolId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/schools/${schoolId}`);
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(getSchoolById(data));
+    return data;
+  } else if (response.status < 500) {
     const errMsgs = await response.json();
     return errMsgs;
   }
@@ -130,15 +137,15 @@ const schoolsReducer = (state = initialState, action) => {
     //   });
       return { ...state, allSchools: action.payload };
 
-    case GET_SCHOOL:
-      return { ...state, singleSchool: action.payload };
-
     case GET_SCHOOL_BY_SEARCH:
     //   const allSchools = {};
     //   action.payload.schools.forEach((school) => {
     //     allSchools[school.id] = school;
     //   });
       return { ...state, allSchools: action.payload };
+
+    case GET_SCHOOL_BY_ID:
+      return { ...state, singleSchool: action.payload };
 
     case CREATE_SCHOOL:
       return { ...state, allSchools: { ...state.allSchools, [action.payload.id]: action.payload } };

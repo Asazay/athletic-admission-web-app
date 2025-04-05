@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.hasOne(models.School, { foreignKey: 'principalId', onDelete: 'CASCADE' });
     }
   }
   User.init({
