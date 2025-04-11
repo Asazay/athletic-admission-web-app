@@ -29,3 +29,8 @@ section h1{
 .description{
     
 }
+
+img {
+    height: 250px;
+    width: 250px;
+}
