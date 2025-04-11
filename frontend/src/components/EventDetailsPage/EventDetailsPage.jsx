@@ -40,7 +40,7 @@ function EventDetailsPage() {
       <div id="evp-event-description-div">
         {event && event.description && <div>{event.description}</div>}
       </div>
-      {event && event.date && event.time && event.location && event.price && (
+      {event && event.date && event.time && event.location && event.price && event.price.toFixed(2) && (
         <div id="evp-event-info-div">
           <ul>
             <li>
