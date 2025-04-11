@@ -56,7 +56,7 @@ function EventDetailsPage() {
                 event.time}
             </li>
             <li>Location: {event.location}</li>
-            <li>Price: ${Number(event.price).toFixed(2)}</li>
+            <li>Price: ${event.price}</li>
             <li>
               {"Parking: "}
               <select
