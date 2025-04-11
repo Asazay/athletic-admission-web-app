@@ -41,17 +41,17 @@ function CheckoutPage(eventData) {
         <div class="product">
           <img src={event.imageUrl} alt="event image" />
           <div className="description">
-            <h5>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : event.price + ".00 :)"}</h5>
+            <h5>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : event.price}</h5>
             <h5>
               Parking: {location.state.parking} - ${location.state.parkingPrice}
             </h5>
           </div>
         </div>
-        <form onSubmit={(e) => handleCheckout(e)}>
-          <button type="submit" id="checkout-button">
+        <div>
+          <button type="submit" id="checkout-button" onSubmit={(e) => handleCheckout(e)}>
             Checkout
           </button>
-        </form>
+        </div>
       </section>
     )
   );
