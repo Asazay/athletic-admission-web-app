@@ -41,7 +41,7 @@ function CheckoutPage(eventData) {
         <div class="product">
           <img src={event.imageUrl} alt="event image" />
           <div className="description">
-            <h5>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : event.price}</h5>
+            <h5>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : parseFloat(event.price).toFixed(2)}</h5>
             <h5>
               Parking: {location.state.parking} - ${location.state.parkingPrice}
             </h5>
