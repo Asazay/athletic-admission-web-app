@@ -40,7 +40,7 @@ function EventDetailsPage() {
       <div id="evp-event-description-div">
         {event && event.description && <div>{event.description}</div>}
       </div>
-      {event && event.date && event.time && event.location && event.price && event.price.toFixed(2) && (
+      {event && event.date && event.time && event.location && event.price && (
         <div id="evp-event-info-div">
           <ul>
             <li>
@@ -56,7 +56,7 @@ function EventDetailsPage() {
                 event.time}
             </li>
             <li>Location: {event.location}</li>
-            <li>Price: ${event.price.toFixed(2)}</li>
+            <li>Price: ${Number(event.price).toFixed(2)}</li>
             <li>
               {"Parking: "}
               <select
