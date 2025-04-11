@@ -48,7 +48,7 @@ function CheckoutPage(eventData) {
           </div>
         </div>
         <div>
-          <button type="submit" id="checkout-button" onSubmit={(e) => handleCheckout(e)}>
+          <button type="submit" id="checkout-button" onClick={(e) => handleCheckout(e)}>
             Checkout
           </button>
         </div>
