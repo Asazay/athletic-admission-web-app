@@ -2,7 +2,14 @@ const router = require('express').Router();
 
 // This is your test secret API key.
 const stripe = require('stripe')('sk_test_51RAKkdQEsu3DFC0UhmqzexpdisBg3aJSh2OHUuzSQ4lCqSmzPqeejoD5ALf3jID5ma8dTSil5jfD4GltNG3abyA300DA9xNJB5');
-const YOUR_DOMAIN = 'http://localhost:3000';
+
+let YOUR_DOMAIN;
+
+if(process.env.NODE_ENV === 'production'){
+  YOUR_DOMAIN = 'https://athletic-admission-web-app.onrender.com'
+}
+else YOUR_DOMAIN = 'localhost:3000'
+
 
 router.post('/create-checkout-session', async (req, res) => {
     let {eventPrice, parking, parkingPrice} = req.body;
@@ -22,6 +29,7 @@ router.post('/create-checkout-session', async (req, res) => {
         15: 'price_1RAf4YQEsu3DFC0UShV8Odkc',
     }
 console.log(admissionPrices[eventPrice])
+console.log(parkingPrices[parkingPrice])
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
