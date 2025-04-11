@@ -8,14 +8,14 @@ let YOUR_DOMAIN;
 if(process.env.NODE_ENV === 'production'){
   YOUR_DOMAIN = 'https://athletic-admission-web-app.onrender.com'
 }
-else YOUR_DOMAIN = 'localhost:3000'
+else YOUR_DOMAIN = 'http://localhost:3000'
 
 
 router.post('/create-checkout-session', async (req, res) => {
     let {eventPrice, parking, parkingPrice} = req.body;
 
-    eventPrice && parseInt(eventPrice) ? eventPrice = parseInt(eventPrice) : eventPrice = null;
-    parkingPrice && parseInt(parkingPrice) ? parkingPrice = parseInt(parkingPrice) : parkingPrice = null;
+    typeof eventPrice !== 'number' ? eventPrice = parseInt(eventPrice)  : null;
+    typeof parkingPrice !== 'number' ? parkingPrice = parseInt(parkingPrice) : null;
 
     let parkingPrices = {
         0: 'price_1RAfg7QEsu3DFC0UVtZr6qEg',
@@ -28,8 +28,6 @@ router.post('/create-checkout-session', async (req, res) => {
         10: 'price_1RAerrQEsu3DFC0UAa5w2Ifh',
         15: 'price_1RAf4YQEsu3DFC0UShV8Odkc',
     }
-console.log(admissionPrices[eventPrice])
-console.log(parkingPrices[parkingPrice])
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -39,7 +37,7 @@ console.log(parkingPrices[parkingPrice])
         quantity: 1,
       },
       {
-        price: parkingPrices[parkingPrice],
+        price: parkingPrices[parkingPrice.toFixed(0)],
         quantity: 1
       }
 
