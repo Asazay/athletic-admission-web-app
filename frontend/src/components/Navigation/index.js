@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./Navigation.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -40,7 +41,7 @@ function Navigation({ isLoaded }) {
   return (
     <div id="nav-bar">
       <div>
-        <div>Menu</div>
+        <div><i class="fas fa-bars" style={{fontSize: 24}}/></div>
         <div style={{ fontSize: 60 }}><href onClick={e => navigate('/')}>GRANDEVENT</href></div>
         <div>
           {/* <li>

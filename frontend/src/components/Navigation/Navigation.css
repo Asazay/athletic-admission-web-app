@@ -16,7 +16,6 @@
 }
 
 #nav-bar ul{
-    display: flex;
     list-style: none;
 }
 
@@ -47,4 +46,35 @@ href:hover{
 #nav-bar ul div{
     display: flex;
     margin: 0;
+}
+
+#pb-user-menu{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    color: whitesmoke;
+    position: absolute;
+    right: 5.8%;
+    top: 10%;
+    padding: 10px 0;
+    width: auto;
+    z-index: 1;
+    box-sizing: border-box;
+    border: solid lightcyan 1px;
+}
+
+.profile-dropdown li {
+    margin: 5px 0;
+    align-self: center;
+}
+
+.hidden{
+    display: none;
 }

@@ -30,29 +30,27 @@ function CheckoutPage(eventData) {
       });
   };
 
-  console.log(typeof event.price)
-
   return (
     event &&
     event.name &&
     event.price && (
-      <section>
-        <h1>Checkout</h1>
+      <div id="section">
+        <h1>Confirm Checkout</h1>
         <div class="product">
           <img src={event.imageUrl} alt="event image" />
           <div className="description">
-            <h5>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : parseFloat(event.price).toFixed(2)}</h5>
-            <h5>
+            <h3>Admission Ticket - ${typeof event.price === 'number' ? event.price.toFixed(2) : parseFloat(event.price).toFixed(2)}</h3>
+            <h3>
               Parking: {location.state.parking} - ${location.state.parkingPrice}
-            </h5>
+            </h3>
           </div>
         </div>
-        <div>
+        <div id="btn-div">
           <button type="submit" id="checkout-button" onClick={(e) => handleCheckout(e)}>
             Checkout
           </button>
         </div>
-      </section>
+      </div>
     )
   );
 }

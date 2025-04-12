@@ -12,6 +12,11 @@ function ProfileButton({ user }) {
     setShowMenu(true);
   };
 
+  const toggleMenu = (e) => {
+    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    setShowMenu(!showMenu);
+  };
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -31,21 +36,20 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  let ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div id="pb-user-menu">
+      <button onClick={e => toggleMenu(e)}>
+        <i className="far fa-user-circle" style={{fontSize: '24px'}} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        <li>{user.firstName} {user.lastName}</li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>
         </li>
       </ul>
-    </>
+    </div>
   );
 }
 
