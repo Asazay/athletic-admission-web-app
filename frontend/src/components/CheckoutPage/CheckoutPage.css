@@ -1,9 +1,9 @@
-section{
+#section{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
-    color: whitesmoke;
+    background-color: whitesmoke;
+    color: black;
     margin: 20px 0;
     padding: 10px 0;
 }
@@ -23,14 +23,34 @@ section h1{
 }
 
 .product img{
-    border: solid lightcyan 1px;
-}
-
-.description{
-    
+    border: solid black 1px;
 }
 
 img {
-    height: 250px;
-    width: 250px;
+    height: auto;
+    width: 50%;
+}
+
+h3{
+    margin: 10px 0;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    height: 50px;
+}
+
+#btn-div{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 40px;
+    width: 50%;
+}
+
+#btn-div button{
+    width: 50%;
 }

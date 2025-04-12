@@ -3,7 +3,7 @@
 } */
 
 #img-div{
-    margin: 5% 0;
+    margin-top: 5%;
 }
 
 #school-search-div{
@@ -11,9 +11,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
-    color: white;
-    background-color: black;
+    color: #000000;
+    background-color: whitesmoke;
+    border: solid 1px #555555;
 }
 
 #search-title{
@@ -25,7 +25,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid black 2px;
     width: 80%;
 }
 
@@ -47,16 +46,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: solid black 4px;
+    border: solid #555555 1px;
     justify-self: center;
     width: 80%;
     box-sizing: border-box;
-    background-color: lightgray;
+    background-color: whitesmoke;
 }
 
 #school-list-title{
     font-size: 48px;
-    text-decoration: underline;
 }
 
 #school-list{
@@ -65,7 +63,6 @@
     justify-content: center;
     align-self: center;
     width: 100%;
-    background-color: lightgray;
     overflow: scroll;
 }
 
@@ -75,9 +72,9 @@
     justify-content: center;
     align-items: center;
     border: solid darkslategray 2px;
-    margin: 10px 2px;
+    margin: 5px 2px;
     padding: 2px;
-    background-color: black;
+    background-color: #0c1530;
     box-sizing: border-box;
     color: white;
     height: min-content
