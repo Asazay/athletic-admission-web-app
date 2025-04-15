@@ -12,23 +12,28 @@ body{
     box-sizing: border-box;
 }
 
+#modal-content{
+    border: solid darkcyan 2px;
+    overflow-y: scroll;
+    width: 50vw;
+    height: 95vh;
+}
+
 .modal{
     display: flex;
     flex-direction: column;
-    border: solid black 1px;
-    width: 50vw;
-    height: auto;
     justify-items: center;
     background-color: whitesmoke;
     color: black;
     justify-content: center;
     align-items: center;
+    padding: 5px;
 }
 
-input{
+input, select{
     border-radius: 5px;
     border: solid aqua 1px;
-    font-size: larger;
+    font-size: medium;
 }
 
 button{

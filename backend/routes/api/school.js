@@ -104,9 +104,9 @@ router.get("/:schoolId", async (req, res) => {
 
 // Create a new school
 router.post("/", validateSchool, async (req, res) => {
-  const { name, address, city, state, zipCode } = req.body;
+  const { principalId, name, address, city, state, zipCode } = req.body;
 
-  const school = await School.create({ name, address, city, state, zipCode });
+  const school = await School.create({ principalId, name, address, city, state, zipCode });
 
   if (!school) {
     const err = new Error("School creation failed");
@@ -116,6 +116,7 @@ router.post("/", validateSchool, async (req, res) => {
     return next(err);
   }
   const safeSchool = {
+    principalId: school.principalId,
     name: school.name,
     address: school.address,
     city: school.city,
@@ -130,7 +131,7 @@ router.post("/", validateSchool, async (req, res) => {
 // Update a school
 router.put("/:schoolId", validateSchool, async (req, res) => {
   const { schoolId } = req.params;
-  const { name, address, city, state, zipCode } = req.body;
+  const { principalId, name, address, city, state, zipCode } = req.body;
 
   const school = await School.findByPk(schoolId);
 
@@ -142,7 +143,7 @@ router.put("/:schoolId", validateSchool, async (req, res) => {
     return next(err);
   }
 
-  await school.update({ name, address, city, state, zipCode });
+  await school.update({ principalId, name, address, city, state, zipCode });
 
   return res.json({
     school,

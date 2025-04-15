@@ -12,6 +12,19 @@ function EventDetailsPage() {
   const params = useParams();
   const [event, setEvent] = useState({});
   const [parkingPrice, setParkingPrice] = useState(0);
+  const [errors, setErrors] = useState({})
+  const [disable, setDisable] = useState(true)
+
+  useEffect(() => {
+    if(!parkingPrice) {
+      setErrors({error:'You must select a parking option'});
+      setDisable(true)
+    }
+    else {
+      setErrors(new Object());
+      setDisable(false)
+    }
+  }, [parkingPrice])
 
   console.log(event);
 
@@ -76,8 +89,10 @@ function EventDetailsPage() {
               </select>
             </li>
           </ul>
+          {(errors && <p>{errors.error}</p>) || <p></p>}
           <button
             id="evp-pay-btn"
+            disabled={disable}
             onClick={() =>
               navigate("/checkout", {
                 state: {

@@ -96,6 +96,7 @@ export const createSchoolThunk = (school) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(createSchool(data));
+  return data;
 };
 
 export const editSchoolThunk = (school) => async (dispatch) => {
@@ -148,7 +149,7 @@ const schoolsReducer = (state = initialState, action) => {
       return { ...state, singleSchool: action.payload };
 
     case CREATE_SCHOOL:
-      return { ...state, allSchools: { ...state.allSchools, [action.payload.id]: action.payload } };
+      return { ...state, singleSchool: { ...action.payload} };
 
     case EDIT_SCHOOL:
       return { ...state, allSchools: { ...state.allSchools, [action.payload.id]: action.payload } };
