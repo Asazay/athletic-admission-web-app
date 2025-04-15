@@ -1,6 +1,6 @@
-/* div {
-    border: solid red 1px;
-} */
+p{
+    color: whitesmoke;
+}
 
 #img-div{
     margin-top: 5%;
@@ -74,7 +74,7 @@
     border: solid darkslategray 2px;
     margin: 5px 2px;
     padding: 2px;
-    background-color: #0c1530;
+    background-color: #011d4a;
     box-sizing: border-box;
     color: white;
     height: min-content
