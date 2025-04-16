@@ -11,12 +11,12 @@ const router = express.Router();
 const validateSignup = [
     check('firstName')
       .exists({ checkFalsy: true })
-      .isLength({ max: 16 })
-      .withMessage('First Name required, must be 16 characters or less.'),
+      .isLength({min:3, max: 16 })
+      .withMessage('First Name required, must be between 3 to 16 characters.'),
     check('lastName')
       .exists({ checkFalsy: true })
-      .isLength({ max: 16 })
-      .withMessage('Last Name required must be 16 characters or less.'),
+      .isLength({min:3, max: 16 })
+      .withMessage('Last Name required must be between 3 to 16 characters.'),
     check('role')
       .exists({ checkFalsy: true })
       .isIn(['user', 'admin', 'principal'])
@@ -37,9 +37,13 @@ router.post(
     '/',
     validateSignup,
     async (req, res) => {
-      const { firstName, lastName, email, password, role } = req.body;
+      const { firstName, lastName, email, password, role, schoolId } = req.body;
       const hashedPassword = bcrypt.hashSync(password);
-      const user = await User.create({ firstName, lastName, email, hashedPassword, role });
+
+      const createBody = {firstName, lastName, email, hashedPassword, role}
+      if (schoolId) createBody.schoolId = schoolId;
+
+      const user = await User.create(createBody);
   
       const safeUser = {
         id: user.id,

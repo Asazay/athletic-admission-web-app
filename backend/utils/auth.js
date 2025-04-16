@@ -1,7 +1,8 @@
 // backend/utils/auth.js
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, School } = require('../db/models');
+const { raw } = require('express');
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -12,6 +13,9 @@ const setTokenCookie = (res, user) => {
       id: user.id,
       email: user.email,
     };
+
+    if(user.school && user.school.id) safeUser.school = user.school
+
     const token = jwt.sign(
       { data: safeUser },
       secret,
@@ -45,8 +49,13 @@ const setTokenCookie = (res, user) => {
         const { id } = jwtPayload.data;
         req.user = await User.findByPk(id, {
           attributes: {
-            include: ['email', 'createdAt', 'updatedAt']
-          }
+            include: ['email', 'createdAt', 'updatedAt',]
+          },
+          include: [
+            {model: School},
+          ],
+          raw: true,
+          nest: true,
         });
       } catch (e) {
         res.clearCookie('token');

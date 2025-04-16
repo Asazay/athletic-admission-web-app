@@ -44,6 +44,8 @@ function ProfileButton({ user }) {
         <i className="far fa-user-circle" style={{fontSize: '24px'}} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
+        {user && user.school && user.school.name && <li>{user.school.name}</li>}
+        <li>Role: {user.role && user.role.toString().toUpperCase()}</li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>

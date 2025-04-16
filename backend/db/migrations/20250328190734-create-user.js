@@ -36,6 +36,10 @@ module.exports = {
         allowNull: false,
         defaultValue: 'user'
       },
+      schoolId:{
+        allowNull: true,
+        type: Sequelize.INTEGER,  
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

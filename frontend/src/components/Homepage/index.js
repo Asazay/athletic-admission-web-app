@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllSchoolsThunk } from "../../store/schools";
 import { getSchoolBySearchThunk } from "../../store/schools";
-import {useNavigate} from 'react-router';
+import { useNavigate } from "react-router";
 
 function Homepage() {
   const dispatch = useDispatch();
@@ -31,15 +31,17 @@ function Homepage() {
     if (state) searchParams.state = state;
     if (zipCode) searchParams.zipCode = zipCode;
 
-    console.log(searchParams)
+    console.log(searchParams);
 
     if (Object.keys(searchParams).length === 0) {
-        const response = await dispatch(getAllSchoolsThunk());
-        
-        if (response && response.length > 0) {
-          setSchools(response);
-        }
-        else {setSchools([]); return}
+      const response = await dispatch(getAllSchoolsThunk());
+
+      if (response && response.length > 0) {
+        setSchools(response);
+      } else {
+        setSchools([]);
+        return;
+      }
     }
 
     const response = await dispatch(getSchoolBySearchThunk(searchParams));
@@ -47,10 +49,10 @@ function Homepage() {
     if (response && response.length > 0) {
       setSchools(response);
     } else {
-        setSchools([]);
-        const newErrors = {...errors, searchErr: 'No schools found'};
-        setErrors(newErrors);
-      }
+      setSchools([]);
+      const newErrors = { ...errors, searchErr: "No schools found" };
+      setErrors(newErrors);
+    }
   };
 
   return (
@@ -67,7 +69,7 @@ function Homepage() {
       </div>
       <div id="school-search-div">
         <div id="search-title">School Search</div>
-        <form id="school-search-form" onSubmit={e => handleSubmit(e)}>
+        <form id="school-search-form" onSubmit={(e) => handleSubmit(e)}>
           <div>
             <div>
               <label htmlFor="name">Name:</label>
@@ -167,7 +169,9 @@ function Homepage() {
               <button type="submit">Search</button>
             </div>
             {Object.keys(errors).length > 0 && errors.searchErr && (
-              <p style={{color: 'red', alignSelf: 'center'}}>{errors.searchErr}</p>
+              <p style={{ color: "red", alignSelf: "center" }}>
+                {errors.searchErr}
+              </p>
             )}
           </div>
         </form>
@@ -187,10 +191,16 @@ function Homepage() {
                   </p>
                 </div>
                 <div>
-                  <button onClick={(e) => {
-                    e.preventDefault();
-                    navigate(`/schools/${school.state}/${school.city}/${school.name}/ges${school.zipCode}gei${school.id}`);
-                  }}>Select</button>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(
+                        `/schools/${school.state}/${school.city}/${school.name}/ges${school.zipCode}gei${school.id}`
+                      );
+                    }}
+                  >
+                    Select
+                  </button>
                 </div>
               </div>
             ))}
