@@ -12,16 +12,14 @@ function SchoolHomepage() {
     const params = useParams();
     const [school, setSchool] = useState({});
     const [events, setEvents] = useState([]);
-
-    console.log(events)
     
     useEffect(() => {
         const fetchSchool = async () => {
             const schoolId = params.schoolId;
             const response = await dispatch(getSchoolByIdThunk(schoolId.slice(-1)));
-            console.log(response)
+       
             if (response) {
-                setSchool(response.school);
+                setSchool(response);
             }
         };
         fetchSchool();
@@ -29,7 +27,7 @@ function SchoolHomepage() {
         const fetchEvents = async () => {
             const schoolId = params.schoolId;
             const response = await dispatch(getAllEventsThunk(schoolId.slice(-1)));
-            console.log(response)
+          
             if (response) {
                 setEvents(response);
             }
@@ -56,7 +54,7 @@ function SchoolHomepage() {
       <div id="shp-events-div">
         {events && events.length > 0 ? (
             events.map((event) => (
-                <button id={`event-btn-card`} onClick={(e) => handleEventClick(e, event.id)}>
+                <button key={event.id} id={`event-btn-card`} onClick={(e) => handleEventClick(e, event.id)}>
                     <div key={event.id} className="shp-event-card">
                    <div id="shp-event-card-img"> <img src={event.imageUrl} alt={event.name} /></div>
                     <h4 style={{textAlign: 'center'}}>{event.name}</h4>

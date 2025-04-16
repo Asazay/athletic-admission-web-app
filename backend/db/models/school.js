@@ -11,21 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      School.hasMany(models.Event, { foreignKey: 'schoolId' });
-      School.belongsTo(models.User, { foreignKey: 'id' });
+      School.hasMany(models.Event);
+      School.hasMany(models.User, {foreignKey: 'id'});
     }
   }
   School.init({
-    principalId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'Users',
-        key: 'id'
-      },
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
-    },
     name: DataTypes.STRING,
     state: DataTypes.STRING,
     city: DataTypes.STRING,

@@ -100,7 +100,8 @@ export const createSchoolThunk = (school) => async (dispatch) => {
 };
 
 export const editSchoolThunk = (school) => async (dispatch) => {
-  const response = await csrfFetch(`/api/schools/${school.id}`, {
+  const url = school.adminId || school.principalId ? `/api/schools/${school.id}/staff-update`: `/api/schools/${school.id}`;
+  const response = await csrfFetch(url, {
     method: "PUT",
     body: JSON.stringify(school),
   });
@@ -146,7 +147,7 @@ const schoolsReducer = (state = initialState, action) => {
       return { ...state, allSchools: action.payload };
 
     case GET_SCHOOL_BY_ID:
-      return { ...state, singleSchool: action.payload };
+      return { ...state, singleSchool: {...action.payload} };
 
     case CREATE_SCHOOL:
       return { ...state, singleSchool: { ...action.payload} };

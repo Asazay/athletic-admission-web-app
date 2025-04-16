@@ -12,7 +12,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await School.bulkCreate([
       {
-        principalId: 3,
         name: "Springfield High School",
         state: "IL",
         city: "Springfield",
@@ -20,7 +19,6 @@ module.exports = {
         address: "123 Main St",
       },
       {
-        principalId: 4,
         name: "Lincoln High School",
         state: "CA",
         city: "Los Angeles",
@@ -28,7 +26,6 @@ module.exports = {
         address: "456 Elm St",
       },
       {
-        principalId: 5,
         name: "Washington High School",
         state: "NY",
         city: "New York",

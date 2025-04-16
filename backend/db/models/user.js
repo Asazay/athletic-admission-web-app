@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasOne(models.School, { foreignKey: 'principalId', onDelete: 'CASCADE' });
+      User.belongsTo(models.School);
     }
   }
   User.init({
@@ -26,7 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     hashedPassword: DataTypes.STRING,
+    schoolId: DataTypes.INTEGER,
     role: DataTypes.ENUM('user', 'admin', 'principal'),
+    schoolId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'User',

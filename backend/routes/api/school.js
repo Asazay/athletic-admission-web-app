@@ -87,7 +87,7 @@ router.get("/search", async (req, res) => {
 });
 
 // Get school by ID
-router.get("/:schoolId", async (req, res) => {
+router.get("/:schoolId", async (req, res, next) => {
   const { schoolId } = req.params;
   const school = await School.findByPk(parseInt(schoolId));
 
@@ -96,10 +96,10 @@ router.get("/:schoolId", async (req, res) => {
     err.status = 404;
     err.title = "School not found";
     err.errors = { school: "No school found with the provided ID." };
-    return err;
+    return next(err);
   }
 
-  return res.json({school});
+  return res.json(school);
 });
 
 // Create a new school
@@ -129,9 +129,20 @@ router.post("/", validateSchool, async (req, res) => {
 });
 
 // Update a school
-router.put("/:schoolId", validateSchool, async (req, res) => {
+router.put("/:schoolId", async (req, res) => {
   const { schoolId } = req.params;
-  const { principalId, name, address, city, state, zipCode } = req.body;
+  const { adminId, principalId, name, address, city, state, zipCode } = req.body;
+
+  const updateBody = {};
+  if (adminId) updateBody.adminId = adminId;
+  if (principalId) updateBody.principalId = principalId;
+  if (name) updateBody.name = name;
+  if (address) updateBody.address = address;
+  if (city) updateBody.city = city;
+  if (state) updateBody.state = state;
+  if (zipCode) updateBody.zipCode = zipCode;
+
+  console.log(updateBody)
 
   const school = await School.findByPk(schoolId);
 
@@ -143,7 +154,43 @@ router.put("/:schoolId", validateSchool, async (req, res) => {
     return next(err);
   }
 
-  await school.update({ principalId, name, address, city, state, zipCode });
+  try{
+    await school.update(updateBody);
+  }
+  catch(e){
+    return next(e)
+  }
+
+  return res.json({
+    school,
+  });
+});
+
+// Update school admin / principal
+router.put("/:schoolId/:staff-update", async (req, res, next) => {
+  const { schoolId } = req.params;
+  const { adminId, principalId} = req.body;
+
+  const updateBody = {};
+  if (adminId) updateBody.adminId = parseInt(adminId);
+  if (principalId) updateBody.principalId = parseInt(principalId);
+
+  const school = await School.findByPk(parseInt(schoolId));
+
+  if (!school) {
+    const err = new Error("School not found");
+    err.status = 404;
+    err.title = "School not found";
+    err.errors = { school: "No school found with the provided ID." };
+    return next(err);
+  }
+
+  try{
+    await school.update(updateBody);
+  }
+  catch(e){
+    return next(e)
+  }
 
   return res.json({
     school,

@@ -1,11 +1,12 @@
 // backend/routes/api/session.js
 const express = require('express');
-const {Op} = require('sequelize');
+const {Op, json} = require('sequelize');
 const bcrypt = require('bcryptjs');
 const { setTokenCookie, restoreUser} = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, School } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const school = require('../../db/models/school');
 
 const router = express.Router();
 
@@ -25,6 +26,7 @@ router.get(
     '/',
     (req, res) => {
       const { user } = req;
+     
       if (user) {
         const safeUser = {
           id: user.id,
@@ -33,6 +35,9 @@ router.get(
           role: user.role,
           email: user.email,
         };
+
+        if(user.School && user.School.id) safeUser.school = user.School;
+
         return res.json({
           user: safeUser
         });
@@ -51,10 +56,15 @@ router.post(
       const user = await User.unscoped().findOne({
         where: {
             email: credential
-        }
+        },
+        include:{
+          model: School,
+        }, 
+        raw: true,
+        nest: true
       });
   
-      if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
+      if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
@@ -69,6 +79,8 @@ router.post(
         role: user.role,
         email: user.email,
       };
+
+      if(user.School && user.School.id) safeUser.school = user.School;
   
       await setTokenCookie(res, safeUser);
   
