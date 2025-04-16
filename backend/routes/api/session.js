@@ -36,7 +36,7 @@ router.get(
           email: user.email,
         };
 
-        if(user.School && user.School.id) safeUser.school = user.School;
+        if(user && user.School && user.School.id) safeUser.school = user.School;
 
         return res.json({
           user: safeUser
@@ -64,7 +64,7 @@ router.post(
         nest: true
       });
   
-      if (!user || !bcrypt.compareSync(password, user.hashedPassword)) {
+      if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
