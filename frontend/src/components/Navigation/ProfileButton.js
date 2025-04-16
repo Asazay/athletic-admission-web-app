@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
+import { useDispatch } from "react-redux";
+import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function ProfileButton({ user }) {
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -40,16 +40,27 @@ function ProfileButton({ user }) {
 
   return (
     <div id="pb-user-menu">
-      <button onClick={e => toggleMenu(e)}>
-        <i className="far fa-user-circle" style={{fontSize: '24px'}} />
+      <button onClick={(e) => toggleMenu(e)}>
+        <i className="far fa-user-circle" style={{ fontSize: "24px" }} />
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        {user && user.school && user.school.name && <li>{user.school.name}</li>}
-        <li>Role: {user.role && user.role.toString().toUpperCase()}</li>
-        <li>{user.email}</li>
+        {user && user.school && user.school.name && (
+          <li style={{ fontWeight: "bold", fontSize: "18px" }}>
+            {user.school.name}
+          </li>
+        )}
         <li>
-          <button onClick={logout}>Log Out</button>
+          Role:{" "}
+          <span style={{ fontWeight: "bold" }}>
+            {user.role && user.role.toString().toUpperCase()}
+          </span>
         </li>
+        <li>{user.email}</li>
+        <div>
+          <li>
+            <button onClick={logout}>Log Out</button>
+          </li>
+        </div>
       </ul>
     </div>
   );
