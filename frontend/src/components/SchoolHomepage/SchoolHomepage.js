@@ -5,13 +5,14 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router";
 import { getSchoolByIdThunk } from "../../store/schools";
 import { getAllEventsThunk } from "../../store/events";
+import { getAllEventsSelector } from "../../store/events";
 
 function SchoolHomepage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const params = useParams();
     const [school, setSchool] = useState({});
-    const [events, setEvents] = useState([]);
+    const events = useSelector(getAllEventsSelector, (a, b) => a.length === b.length);
     
     useEffect(() => {
         const fetchSchool = async () => {
@@ -29,7 +30,7 @@ function SchoolHomepage() {
             const response = await dispatch(getAllEventsThunk(schoolId.slice(-1)));
           
             if (response) {
-                setEvents(response);
+                // setEvents(response);
             }
         };
         fetchEvents();

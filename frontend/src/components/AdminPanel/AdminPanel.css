@@ -1,0 +1,61 @@
+#admin-panel{
+   display: flex;
+   flex-direction: column;
+}
+
+#title-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+#title-div h1{
+    font-size: 60px;
+    color: black;
+}
+
+.shp-event-card button {
+  border-radius: 5px;
+  background-color: #1e2438;
+  color: white;
+  margin: 5px;
+  width: 50%;
+  height: 40px;
+}
+
+.shp-event-card button:hover {
+    cursor: pointer;
+    background-color: rgb(185, 186, 187);
+}
+
+#btn-div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#btn-div button{
+    width: 50%;
+}
+
+href{
+    text-decoration: none;
+}
+
+href:hover{
+    color: #202020;
+}
+
+#create-event-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#create-event-div button{
+    width: 25%;
+    height: 40px;
+    justify-self: center;
+}

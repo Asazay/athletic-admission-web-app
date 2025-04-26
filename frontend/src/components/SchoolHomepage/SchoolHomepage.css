@@ -22,7 +22,6 @@
   max-width: calc(5 * 1fr);
   background-color: whitesmoke;
   color: black;
-  border: solid black 2px;
   margin: 20px 0;
   padding: 10px;
 }
@@ -38,10 +37,11 @@
   margin: 0 10px;
   padding: 5px;
   box-sizing: border-box;
+  max-width: 300px;
 }
 .shp-event-card:hover{
-    border: solid black 1px;
     cursor: pointer;
+    background-color: lightgray;
 }
 
 .shp-event-card button{

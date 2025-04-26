@@ -27,23 +27,6 @@ p {
     height: 40px;
 }
 
-.form-group{
-    display: flex;
-    justify-content: center;
-    /* border: solid greenyellow 1px; */
-    width: 80%;
-    box-sizing: border-box;
-    margin: 5px;
-}
-
-.form-group label{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    box-sizing: border-box;
-    border: solid 1px beige;
-}
-
 #signup-modal{
     display: flex;
     flex-direction: column;
@@ -78,7 +61,7 @@ p {
     flex-direction: row;
     height: auto;
     box-sizing: border-box;
-}*
+}
 
 .form-label{
     width: 80%;

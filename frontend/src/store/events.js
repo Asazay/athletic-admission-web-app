@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { createSelector } from "reselect";
 
 const GET_All_EVENTS = "events/GET_ALL_EVENTS";
 const GET_EVENT_BY_ID = "events/GET_EVENT_BY_ID";
@@ -85,6 +86,7 @@ export const createEventThunk = (event) => async (dispatch) => {
 
   else if (response.status < 500){
     const errMsgs = await response.json();
+    console.log(errMsgs);
     return errMsgs;
   }
 }
@@ -122,6 +124,17 @@ export const deleteEventThunk = (eventId) => async (dispatch) => {
   }
 }
 
+//Selectors
+const getAllEventsState = state => state.events.allEvents;
+export const getAllEventsSelector = createSelector(getAllEventsState, (allEvents) => {
+  if(allEvents){
+    const eventsArray = Object.values(allEvents);
+    return [...eventsArray];
+  }
+}
+);
+
+
 const initialState = {
   allEvents: {},
   singleEvent: {},
@@ -130,13 +143,9 @@ const initialState = {
 const eventsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_All_EVENTS:
-      const allEvents = {};
-      action.payload.forEach((event) => {
-        allEvents[event.id] = event;
-      });
       return {
         ...state,
-        allEvents: { ...allEvents },
+        allEvents: action.payload,
       };
     case GET_EVENT_BY_ID:
       return {
@@ -154,8 +163,11 @@ const eventsReducer = (state = initialState, action) => {
         allEvents: { ...state.allEvents, [action.payload.id]: action.payload },
       };
     case DELETE_EVENT:
-      const newState = { ...state };
-      delete newState.allEvents[action.payload];
+      const newState = {...state};
+      const newEvents = {...newState.allEvents};
+      delete newEvents[action.payload]
+      newState.allEvents = newEvents;
+      newState.singleEvent = {}
       return newState;
     default:
       return state;
