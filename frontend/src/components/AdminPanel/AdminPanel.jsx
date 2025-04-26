@@ -116,7 +116,7 @@ function AdminPanel() {
                   Edit
                 </button>
                 <OpenModalButton
-                  buttonText="Cancel"
+                  buttonText="Cancel Event"
                   modalComponent={
                     <div className="modal">
                       <div id="title-div">

@@ -38,7 +38,7 @@ input, select{
 
 button{
     border-radius: 5px;
-    border: none;
+    border: solid white 1px;
     background-color: #1e2438;
     color: white;
 }
@@ -46,7 +46,7 @@ button{
 button:hover{
     cursor: pointer;
     background-color: lightslategray;
-    border: none;
+    border: solid lightslategray 1px;
 }
 
 img{
