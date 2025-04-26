@@ -131,7 +131,17 @@ function EditEvent() {
           <input type="url" id="eventImageUrl" name="eventImageUrl" required value={imageUrl} onChange={e => setImageUrl(e.target.value)}/>
         </div>
 
-        <div id="btn-div"><button type="submit" onClick={e => handleSubmit(e)}>Save</button></div>
+        <div id="btn-div">
+          <button type="submit" onClick={e => handleSubmit(e)}>Save</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              nav(`/admin/${user.id}/panel`);
+            }}
+          >
+            Cancel
+          </button>
+          </div>
       </form>
     </div>
   );

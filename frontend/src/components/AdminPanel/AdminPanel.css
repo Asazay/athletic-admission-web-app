@@ -14,6 +14,10 @@
     color: black;
 }
 
+/* .shp-event-card{
+    width: 100%;
+} */
+
 .shp-event-card button {
   border-radius: 5px;
   background-color: #1e2438;
@@ -25,17 +29,19 @@
 
 .shp-event-card button:hover {
     cursor: pointer;
-    background-color: rgb(185, 186, 187);
+    background-color: lightslategray;
 }
 
 #btn-div{
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: auto;
+    box-sizing: border-box;
 }
 
 #btn-div button{
-    width: 50%;
+    width: 100%;
 }
 
 href{

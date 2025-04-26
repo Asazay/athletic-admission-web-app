@@ -68,7 +68,7 @@ function CreateEvent() {
   const handleCancel = (e) => {
     e.preventDefault();
     // Handle cancel logic here
-    nav(`/admin/${user.id}`);
+    nav(`/admin/${user.id}/panel`);
   };
 
   const handleChange = (e) => {
