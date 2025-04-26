@@ -26,12 +26,11 @@ function EventDetailsPage() {
     }
   }, [parkingPrice])
 
-  console.log(event);
-
   useEffect(() => {
     const fetchEvent = async () => {
-      const schoolId = params.schoolId.slice(-1);
-      const eventId = params.eventId.slice(-1);
+      const schoolId = params.schoolId.split('gei')[1];
+      const eventId = params.eventId;
+      console.log(eventId);
       const response = await dispatch(getEventByIdThunk(eventId, schoolId));
       if (response) {
         setEvent(response);

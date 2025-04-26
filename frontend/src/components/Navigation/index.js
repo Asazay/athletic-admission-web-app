@@ -103,6 +103,14 @@ function Navigation({ isLoaded }) {
               else navigate('/')
               toggleMenu(e)
             }}>Home</button></li>
+            { user && user.role === 'admin' && <li>
+              <button onClick={e => {
+                navigate(`/admin/${user.id}/panel`);
+                toggleMenu(e);
+              }}>
+                Admin Panel
+              </button>
+            </li>}
           </ul>
         </div>
         <div style={{ fontSize: 60 }}>

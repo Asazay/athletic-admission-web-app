@@ -1,0 +1,28 @@
+#create-event {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+#create-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#btn-div {
+  width: 50%;
+  margin: 5px;
+}
+
+#btn-div button {
+  width: 50%;
+  height: 40px;
+  justify-self: center;
+  margin: 5px;
+}

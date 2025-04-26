@@ -1,0 +1,38 @@
+#edit-event{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#edit-event form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    color: black;
+    font-size: medium;
+}
+
+#edit-event form div{
+    display: flex;
+    margin: 10px;
+    align-items: center;
+    width: 80%;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+#edit-event form div input{
+    width: 80%;
+    margin: 0 5px;
+}
+
+#edit-event form div label{
+    width: auto;
+}

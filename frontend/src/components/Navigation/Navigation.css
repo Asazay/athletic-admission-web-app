@@ -118,3 +118,7 @@ href:hover{
 .hidden{
     display: none;
 }
+
+li {
+    margin: 5px 0;
+}
