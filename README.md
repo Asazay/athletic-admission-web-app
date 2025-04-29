@@ -185,7 +185,6 @@ Welcome to the **Athletic Admission and Parking Web App**. This application is d
 
 #### 6.1 **Issue: Unable to log in**
 - Ensure you are using the correct email and password combination.
-- If you forgot your password, use the “Forgot Password” feature to reset it.
 
 #### 6.2 **Issue: Payment failure**
 - Check your card details for accuracy.
