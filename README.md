@@ -13,7 +13,7 @@
 ### 1. **System Overview**
 The **Athletic Admission and Parking Web App** is designed to streamline the process of purchasing tickets for athletic events and managing those events. The application serves three main purposes:
 - **For Users**: To register, browse, and purchase admission and parking tickets for school athletic events.
-- **For Schools/Administrators**: To manage school profiles and events, as well as track ticket sales and attendance.
+- **For Admins**: To manage school events.
 - **For Principals**: To register their schools and confirm admin users for event management.
 
 ---
