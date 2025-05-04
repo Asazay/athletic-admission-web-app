@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { createSchoolThunk } from "../../store/schools";
 import { getSchoolByIdThunk } from "../../store/schools";
-import {editSchoolThunk} from '../../store/schools'
+import { editSchoolThunk } from "../../store/schools";
 import { useRef } from "react";
 import { useNavigate } from "react-router";
 import { useModal } from "../../context/Modal";
@@ -12,11 +12,11 @@ import { useModal } from "../../context/Modal";
 function SignupFormModal() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const school = useSelector(state => state.schools)
+  const school = useSelector((state) => state.schools);
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("user");
   const [schoolName, setSchoolName] = useState("");
-  const [schoolId, setSchoolId] = useState('')
+  const [schoolId, setSchoolId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -31,16 +31,13 @@ function SignupFormModal() {
 
   const nav = useNavigate();
 
-
   const { closeModal } = useModal();
 
   useEffect(() => {
     if (sessionUser) nav("/");
   }, [sessionUser]);
 
-  useEffect(() => {
-
-  }, [school])
+  useEffect(() => {}, [school]);
 
   const ref = useRef();
 
@@ -70,51 +67,55 @@ function SignupFormModal() {
         nav("/");
       }
 
-      if(signupRole === 'principal'){
+      if (signupRole === "principal") {
         setErrors({});
-      const user = await dispatch(
-        sessionActions.signup({
-          email,
-          role: signupRole,
-          firstName,
-          lastName,
-          password
-        })
-      ).catch(async (res) => {
+        const user = await dispatch(
+          sessionActions.signup({
+            email,
+            role: signupRole,
+            firstName,
+            lastName,
+            password,
+          })
+        ).catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
             return setErrors(data.errors);
           }
         });
 
-      const newSchool = await dispatch(createSchoolThunk({
-        principalId: user['id'],
-        name: schoolName,
-        address,
-        city,
-        state,
-        zipCode,
-      })).catch(res => {
-        const data = res.json();
-        if(data && data.errors) return setErrors(data.errors)
-      })
+        const newSchool = await dispatch(
+          createSchoolThunk({
+            principalId: user["id"],
+            name: schoolName,
+            address,
+            city,
+            state,
+            zipCode,
+          })
+        ).catch((res) => {
+          const data = res.json();
+          if (data && data.errors) return setErrors(data.errors);
+        });
 
-      alert("Successfully registered.")
-      closeModal();
-      nav("/");
+        alert("Successfully registered.");
+        closeModal();
+        nav("/");
       }
 
-      if(signupRole === 'admin'){
+      if (signupRole === "admin") {
         setErrors({});
 
-        const school = await dispatch(getSchoolByIdThunk(schoolId)).catch(async res => {
-          const data = await res.json()
-          if(data && data.errors && data.errors.school){
-            setErrors(new Object({...errors, school: data.errors.school}))
+        const school = await dispatch(getSchoolByIdThunk(schoolId)).catch(
+          async (res) => {
+            const data = await res.json();
+            if (data && data.errors && data.errors.school) {
+              setErrors(new Object({ ...errors, school: data.errors.school }));
+            }
           }
-        })
+        );
 
-        if(!school) return
+        if (!school) return;
 
         const user = await dispatch(
           sessionActions.signup({
@@ -126,13 +127,13 @@ function SignupFormModal() {
             password,
           })
         ).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-              setErrors(data.errors);
-            }
-          });
+          const data = await res.json();
+          if (data && data.errors) {
+            setErrors(data.errors);
+          }
+        });
 
-        alert("Successfully registered")
+        alert("Successfully registered");
         closeModal();
         nav("/");
       }
@@ -150,74 +151,81 @@ function SignupFormModal() {
   };
 
   const userSignup = (
-    <div>
-      <h1>Sign Up</h1>
+    <div className="modal">
+      <div className="form-title">
+        <h1>Sign Up</h1>
+      </div>
       <div className="form-group">
-        <label>
-          First Name
-          <br />
+        <div className="form-label">
+          <label>First Name:</label>
+        </div>
+        <div className="form-input">
           <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.firstName && <p>{errors.firstName}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Last Name
-          <br />
-          <input
+        <div className="form-label">
+          <label>Last Name:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.lastName && <p>{errors.lastName}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Email
-          <br />
-          <input
+        <div className="form-label">
+          <label>Email:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.email && <p>{errors.email}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Password
-          <br />
-          <input
+        <div className="form-label">
+          <label>Password:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.password && <p>{errors.password}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Confirm Password
-          <br />
-          <input
+        <div className="form-label">
+          <label>Confirm Password:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.confirmPassword && <p>{errors.confirmPassword}</p>) || <p></p>}
-      <div id="buttons">
+      <div id="btns-div">
         <div>
           <button type="submit" onClick={handleSubmit}>
             Sign Up
@@ -429,7 +437,7 @@ function SignupFormModal() {
       </div>
       <div id="btns-div">
         <div>
-          <button onClick={e => handleSubmit(e)}>Submit</button>
+          <button onClick={(e) => handleSubmit(e)}>Submit</button>
         </div>
         <div>
           <button
@@ -444,81 +452,93 @@ function SignupFormModal() {
   );
 
   const adminSignup = (
-    <div>
+    <div className="modal">
       <h1>Admin Sign Up</h1>
-      <div className={'form-group'}>
-        <label>School ID:
-          <br/>
-          <input type='text' value={schoolId} onChange={e => setSchoolId(e.target.value)} required></input>
-        </label>
+      <div className={"form-group"}>
+       <div className="form-label">
+        <label>School ID:</label>
+        </div>
+        <div className="form-input">
+        <input
+            type="text"
+            value={schoolId}
+            onChange={(e) => setSchoolId(e.target.value)}
+            required
+          ></input>
+        </div>
       </div>
       {(errors.school && <p>{errors.school}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          First Name
-          <br />
-          <input
+        <div className="form-label">
+          <label>First Name:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="text"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             required={true}
           />
-        </label>
+        </div>
       </div>
       {(errors.firstName && <p>{errors.firstName}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Last Name
-          <br />
-          <input
+        <div className="form-label">
+          <label>Last Name:</label>
+          </div>
+        <div className="form-input">
+        <input
             type="text"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.lastName && <p>{errors.lastName}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Email
-          <br />
-          <input
+        <div className="form-label">
+          <label>Email:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.email && <p>{errors.email}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Password
-          <br />
-          <input
+        <div className="form-label">
+          <label>Password:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.password && <p>{errors.password}</p>) || <p></p>}
       <div className="form-group">
-        <label>
-          Confirm Password
-          <br />
-          <input
+        <div className="form-label">
+          <label>Confirm Password:</label>
+        </div>
+        <div className="form-input">
+        <input
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
-        </label>
+        </div>
       </div>
       {(errors.confirmPassword && <p>{errors.confirmPassword}</p>) || <p></p>}
-      <div id="buttons">
+      <div id="btns-div">
         <div>
           <button type="submit" onClick={handleSubmit}>
             Sign Up
@@ -534,7 +554,7 @@ function SignupFormModal() {
         </div>
       </div>
     </div>
-  )
+  );
 
   return (
     <div className="modal" ref={ref}>
@@ -580,7 +600,7 @@ function SignupFormModal() {
       )}
       {signupRole === "customer" && userSignup}
       {signupRole === "principal" && PrincipalSignup}
-      {signupRole === 'admin' && adminSignup}
+      {signupRole === "admin" && adminSignup}
     </div>
   );
 }
