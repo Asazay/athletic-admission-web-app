@@ -1,6 +1,11 @@
-
 # 🗂️ **System and User Documentation**  
 ## **Athletic Admission and Parking Web App**
+
+### Project setup and install
+### 1. Clone project and cd into folder
+### 2. Execute the command "npm run install" and then cd into frontend folder
+### 3. Open an addtional terminal and cd into backend folder
+### 4. run the command "npm start" in both terminals(the frontend folder terminal and the backend folder terminal)
 
 ![db-schema]
 
